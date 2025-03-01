@@ -7,6 +7,24 @@
   --foreground: #171717;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -18,4 +36,317 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.welcomeSection {
+  animation: welcomeSection 1s ease-out 1.5s 1 normal forwards;
+  animation: name duration timing-function delay iteration-count direction fill-mode;
+}
+
+@keyframes welcomeSection {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.fadeUpText {
+  animation: fadeUpText 0.5s ease-out 1s 1 normal forwards;
+}
+
+@keyframes fadeUpText {
+  0% {
+    transform: translateY(0%);
+  }
+
+  25% {
+    transform: translateY(10%);
+  }
+
+  100% {
+    transform: translateY(-125%);
+  }
+}
+
+.DivFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.ZDown {
+  z-index: -1000;
+}
+
+.ZUp {
+  z-index: 750;
+}
+
+.DivRelative {
+  z-index: 750;
+  position: relative;
+  top: 100vh;
+}
+
+.MovingLinearBackground {
+  background-image: linear-gradient(90deg, #748d92, #2e3944);
+  background-size: 200% 100%;
+  animation: moveGradient 5s ease-in-out infinite alternate;
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #212a31, #d3d9d4);
+  background-size: 200% 100%;
+  animation: moveGradient 5s ease-in-out infinite alternate;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.AnimatedWidth {
+  animation: WidthAnimation 1.85s ease-out 2.5s 1 normal forwards;
+  opacity: 0;
+}
+
+@keyframes WidthAnimation {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    opacity: 1;
+    width: 85%;
+  }
+}
+
+.AnimatedHeightHalf {
+  animation: HalfHeightAnimation 1.5s ease-out 2.5s 1 normal forwards;
+  opacity: 0;
+}
+
+@keyframes HalfHeightAnimation {
+  0% {
+
+    height: 0%;
+  }
+
+  100% {
+    opacity: 1;
+    height: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .AnimatedHeightHalf {
+    opacity: 0;
+    animation: HalfHeightAnimationMobile 1.15s ease-out 2.5s 1 normal forwards;
+  }
+
+  @keyframes HalfHeightAnimationMobile {
+    0% {
+
+      height: 0%;
+    }
+
+    100% {
+      opacity: 1;
+      height: 15%;
+    }
+  }
+}
+
+.AnimatedHeight {
+  opacity: 0;
+  animation: HeightAnimation 1.7s ease-out 2.5s 1 normal forwards;
+}
+
+@keyframes HeightAnimation {
+  0% {
+
+    height: 0%;
+  }
+
+  100% {
+    opacity: 1;
+    height: 70%;
+  }
+}
+
+.blowUpOnHover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #124e66;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: width 0.25s ease-out, height 0.25s ease-out, opacity 0.15s;
+}
+
+.blowUpOnHover:hover::before {
+  width: 110%;
+  height: 110%;
+  opacity: 1;
+}
+
+.SignInSignUpToast {
+  position: fixed;
+  top: 4.75rem;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 50px;
+  background-color: #124e6673;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Jab details open ho tab animation apply ho */
+details[open] .SignInSignUpToast {
+  animation: SignInSignUpToast 0.5s ease-out forwards;
+}
+
+/* Jab close ho, animation remove ho taaki dobara play ho */
+details:not([open]) .SignInSignUpToast {
+  animation: none;
+}
+
+/* Animation Keyframes */
+@keyframes SignInSignUpToast {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(-95%);
+    opacity: 1;
+  }
+}
+
+.TrashWindow {
+  position: fixed;
+  top: 20%;
+  left: 15%;
+  border-radius: 1rem;
+  width: 70vw;
+  height: 60vh;
+  background-color: #d3d9d4;
+  padding-left: 2.5rem /* 40px */;
+  padding-top: 2.5rem /* 40px */;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+/* Jab details open ho tab animation apply ho */
+details[open] .TrashWindow {
+  animation: TrashWindowSlideUp 0.5s ease-out forwards;
+}
+
+/* Jab close ho, animation remove ho taaki dobara play ho */
+details:not([open]) .TrashWindow {
+  animation: none;
+}
+
+/* Animation Keyframes */
+@keyframes TrashWindowSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.SignFormLabel {
+  position: absolute;
+  background-color: #d3d9d4;
+  border-radius: 0.5rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  top: 0.2rem;
+  left: 0.75rem;
+  transition: all 0.3s ease-in-out;
+  color: #212a31;
+}
+
+.SignFormInput {
+  background-color: #d3d9d4;
+  border-width: 1px;
+  border-color: #124e66;
+  border-radius: 1rem;
+  width: 100%;
+  padding-left: 20px;
+  font-size: 1rem;
+  color: #212a31;
+}
+
+.SignFormInput:focus+.SignFormLabel,
+.SignFormInput:not(:placeholder-shown)+.SignFormLabel {
+  top: -1rem;
+  left: 0.5rem;
+  font-size: 0.6rem;
+  background-color: #d3d9d4;
+  padding: 0 0.4rem;
+  color: #212a31;
+}
+
+.LargeWelcomeText {
+  position: relative;
+  transform: translateY(100%);
+  animation: LargeWelcomeText 1s ease-out 2s 1 normal forwards;
+}
+
+@keyframes LargeWelcomeText {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.LoadingDiv {
+  cursor: pointer;
+  background: linear-gradient(to right, #3b82f6 0%, #3b82f6 0%, transparent 100%);
+  background-size: 200% 100%;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.LoadingDiv:hover {
+  background-position: right;
+}
+
+.AdminBg {
+  background-image: url('/backgrounds/Backgrounda.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
